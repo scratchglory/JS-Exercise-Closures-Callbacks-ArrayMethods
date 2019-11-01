@@ -145,7 +145,7 @@ function processContains(item, list, callback) {
   /* CODE HERE */
   // console.log(item);
   for (let i = 0; i < list.length; i++) {
-    if (item === list[i]) {
+    if (item === list) {
       return callback(true);
     } else {
       return callback(false);
@@ -174,6 +174,11 @@ function processContains(item, list, callback) {
  */
 function processDuplicateFree(list, callback) {
   /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+  function unique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+  const arr = list.filter(unique);
+  return arr;
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -280,10 +285,14 @@ function tallyUpDonations(runners) {
  */
 function counterMaker() {
   // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count;
+  function counterNum() {
+    let count = -1;
+    return function() {
+      return ++count;
+    };
   }
+  const counter = counterNum();
+  return counter;
 
   // BROKEN CODE ENDS
 }
@@ -308,7 +317,7 @@ function counterMaker() {
  * counter() // should return 0
  * etc
  */
-function counterMakerWithLimit(/* CODE HERE */) {
+function counterMakerWithLimit(value) {
   /* CODE HERE */
 }
 
